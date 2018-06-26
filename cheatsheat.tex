@@ -1,39 +1,101 @@
 \documentclass{article}
-\usepackage[left=1in, right=1in]
-{geometry}
-\title{Git Cheat Sheet}
+
+%% Preamble
+\usepackage[left=1in, right=1in]{geometry}
+\title{A Noob's Guide to Git}
 \date{ }
+
+\newcommand\git{\texttt{git}}
+
 \begin{document}
+
 \maketitle
-\section*{New repository}
+
+\section*{Quick start}
+
+\subsection*{First time using \texttt{git}?}
+Before you can use git for the first time, you need to set it up so it knows who you are. Your name and an email address is included along with every commit, so that other users of the repo can see the changes you've made.
+
+\begin{enumerate}
+	\item First you need to tell \git your name:
+	
+	\texttt{git config --global user.name <your name>}
+	
+	\item Then you need to give \git an email:
+	
+	\texttt{git config --global user.email <your name>}
+\end{enumerate}
+
+\subsection*{New repository}
 
 Creating a git repo is the most annoying step to using git, here are the steps I use
 
 \begin{enumerate}
-\item Create repo in folder you want to control with git:\newline
-  \texttt{git init}
-\item Add files to the repo with:\newline
-  \textt{git add}
-\item Commit changes to the repo with:\newline
-  \textt{git commit}\newline
-  Your text editor will open up and you will have to write something about what changes you've done, since this is your first commit, something like ``initial commit'' is what I'd put.
-\item If you're using git hub, now you have to create the empty repository --- do not add a README just yet! (It will make things a little harder later)
-\item Now you have to tell your local git repo where to upload your files:\newline
-  \texttt{git remote add origin https://github.com/YOURGITUSERNAME/YOURGITREPO}
-\item Then you push the local changes up to the git repo:\newline
-  \textt{git push --set-upstream origin master}\newline
-  You will be asked to login and can then start using your repo as normal!
+	\item Move to the directory you want to manage with \git
+	\item Initialise the \git repo:
+	
+	\texttt{git init}
+	
+	\item The directory now contains a sub-directory \texttt{.git} which contains information about the repository, the history of the repository, the contents and so on...
+	\item Your new repository doesn't contain anything yet.
+	\item Add files to the repo with:
+	
+	\texttt{git add <FILE>}
+	
+	This tells the repository to track that file. Once you've added all the files you want to add, you need to commit to the repository. This tells the repository to keep the changes you've made (adding this files).
+	\item Commit changes to the repo with:
+	
+	\texttt{git commit}
+	Your text editor will open up and you will have to write something about what changes you've done, since this is your first commit, something like ``Initial commit'' is what I'd put.
+	\item If you're using GitHub, now you have to create the empty repository --- \textbf{do not add a README} just yet! (It will make things a little harder later).
+	\item Now you have to tell your local \git repo where to upload your files:
+	
+	\texttt{git remote add origin https://github.com/<username>/<reponame>}
+	\item Then you push the local changes up to the git repo:
+	
+	\texttt{git push --set-upstream origin master}
+	
+	You will be asked to login, then the files you've added to the repository will be uploaded to GitHub.
 \end{enumerate}
   
-\section*{Updating the Repository}
-Whenever you make changes to the repo, do the following to upload those changes to github:
+\subsection*{Updating the Repository}
+Whenever you make changes to the repo, do the following to upload those changes to GitHub:
+
+\subsubsection*{New file}
 \begin{enumerate}
-\item Add any new files:\newline
-  \texttt{git add <FILE>}
-\item Commit changes made to files:\newline
-  \texttt{git commit <FILE>}
-\item Then push to server:\newline
-  \texttt{git push}
+	\item Add the new file to the repository:
+	
+	\texttt{git add <FILE>}
+		
+	\item Commit this change to the repository:
+	
+	\texttt{git commit <FILE>}
+\end{enumerate}
+
+\subsubsection*{Changes to an existing file}
+\begin{enumerate}
+	\item Commit file changes:
+	
+	\texttt{git commit <FILE>}
+\end{enumerate}
+
+\subsubsection*{Bulk changes}
+\begin{enumerate}
+	\item If you've made a change to a bunch of files, and you want to commit them all:
+	
+	\texttt{git commit -a}
+	
+	This will commit \textbf{all} changes to the repository: all modified files, all deleted files. New files will not be added. 
+\end{enumerate}
+
+\subsubsection*{Sending to the server}
+\begin{enumerate}
+	\item Now to push changes to the server, simply:
+	
+	\texttt{git push}
+	
+	It may ask for your username and password, enter them when prompted and it'll push your local changes up to the server.
+		
 \end{enumerate}
 
 \end{document}
